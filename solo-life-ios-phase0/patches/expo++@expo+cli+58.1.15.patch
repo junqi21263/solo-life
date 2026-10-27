@@ -1,0 +1,28 @@
+diff --git a/node_modules/expo/node_modules/@expo/cli/build/src/start/server/DevToolsPlugin.schema.js b/node_modules/expo/node_modules/@expo/cli/build/src/start/server/DevToolsPlugin.schema.js
+index 130aea3..7284929 100644
+--- a/node_modules/expo/node_modules/@expo/cli/build/src/start/server/DevToolsPlugin.schema.js
++++ b/node_modules/expo/node_modules/@expo/cli/build/src/start/server/DevToolsPlugin.schema.js
+@@ -42,12 +42,12 @@ const CommandSchema = _zod().z.object({
+     environments: _zod().z.array(_zod().z.enum([
+         'cli',
+         'mcp'
+-    ])).readonly(),
+-    parameters: _zod().z.array(CommandParameterSchema).optional()
++    ])).max(1000).readonly(),
++    parameters: _zod().z.array(CommandParameterSchema).max(1000).optional()
+ });
+ const CliExtensionsSchema = _zod().z.object({
+     description: _zod().z.string(),
+-    commands: _zod().z.array(CommandSchema).min(1),
++    commands: _zod().z.array(CommandSchema).min(1).max(1000),
+     entryPoint: _zod().z.string().min(1)
+ });
+ const PluginSchema = _zod().z.object({
+@@ -83,6 +83,6 @@ const DevToolsPluginOutputLinesSchema = _zod().z.union([
+         text: _zod().z.string().optional()
+     })
+ ]);
+-const DevToolsPluginOutputSchema = _zod().z.array(DevToolsPluginOutputLinesSchema);
++const DevToolsPluginOutputSchema = _zod().z.array(DevToolsPluginOutputLinesSchema).max(1000);
+ 
+ //# sourceMappingURL=DevToolsPlugin.schema.js.map

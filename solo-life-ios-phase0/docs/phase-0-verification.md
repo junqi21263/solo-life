@@ -17,7 +17,7 @@
 
 - Expo CLI `run:ios --no-install --no-bundler` exited at “Planning build” without a useful diagnostic; direct `xcodebuild` succeeded. Its root cause is not verified.
 - Debug Metro and Fast Refresh: passed on 2026-10-27. Expo localhost initially listened only on IPv6 `::1`; setting `NODE_OPTIONS=--dns-result-order=ipv4first` made it listen on `127.0.0.1:8081` only. `curl --noproxy "*" http://127.0.0.1:8081/status` returned `packager-status:running`; the development build loaded its JS bundle, and a temporary text change and its restoration both appeared without rebuilding. Start with Node 24.18.0 and `npm run start:ios:local`. LAN and tunnel were not used.
-- `npm audit` on 2026-10-27 after the node-forge update: three high-severity package entries remain, tracing to the Zod advisory; see `security-review.md`. Expo's installed ESLint 9.39.5 was also flagged by npm as unsupported; assess upgrades alongside the Expo-compatible config.
+- `npm audit` on 2026-10-27 after the node-forge update: three high-severity package entries remain, tracing to the Zod advisory; targeted local mitigation is applied, with limitations documented in `security-review.md`. Expo's installed ESLint 9.39.5 was also flagged by npm as unsupported; assess upgrades alongside the Expo-compatible config.
 - No physical iPhone, Android, CloudBase, SQLite persistence, notification or business-flow verification was performed.
 
 Local Phase 0 acceptance for the requested basic build, template rendering, routing and code checks is complete, with the above issues open. This does not certify security, production readiness, or Phase 1 designs.
