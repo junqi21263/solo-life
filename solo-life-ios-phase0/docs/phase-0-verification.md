@@ -16,7 +16,7 @@
 ## Open issues and limits
 
 - Expo CLI `run:ios --no-install --no-bundler` exited at “Planning build” without a useful diagnostic; direct `xcodebuild` succeeded. Its root cause is not verified.
-- The Debug development client launched, but did not successfully load Metro using loopback. LAN mode was rejected by automatic approval review because it could expose project source to other network devices; no LAN server was started. The self-contained Release build verified UI without it. Debug live-reload remains unverified.
+- Debug Metro and Fast Refresh: passed on 2026-10-27. Expo localhost initially listened only on IPv6 `::1`; setting `NODE_OPTIONS=--dns-result-order=ipv4first` made it listen on `127.0.0.1:8081` only. `curl --noproxy "*" http://127.0.0.1:8081/status` returned `packager-status:running`; the development build loaded its JS bundle, and a temporary text change and its restoration both appeared without rebuilding. Start with Node 24.18.0 and `npm run start:ios:local`. LAN and tunnel were not used.
 - `npm audit`: five high-severity package entries remain, tracing to two advisories; see `security-review.md`. Expo's installed ESLint 9.39.5 was also flagged by npm as unsupported; assess upgrades alongside the Expo-compatible config.
 - No physical iPhone, Android, CloudBase, SQLite persistence, notification or business-flow verification was performed.
 
