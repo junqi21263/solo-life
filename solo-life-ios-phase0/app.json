@@ -3,12 +3,13 @@
     "name": "solo-life-ios-phase0",
     "slug": "solo-life-ios-phase0",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "sololifeiosphase0",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon",
+      "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.solo-life-ios-phase0"
     },
     "android": {
