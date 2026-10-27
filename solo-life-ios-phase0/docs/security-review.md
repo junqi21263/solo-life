@@ -10,3 +10,7 @@
 ## Verification
 
 The RSA regression test, TypeScript, ESLint, Expo Doctor (20/20), iOS JavaScript export, and a fresh loopback-only Metro startup and status request passed after the update. No native iOS rebuild, simulator acceptance, real-device test, cloud deployment, or production release was performed for this change.
+
+## Zod backport investigation
+
+Zod 3.25.76 was reproduced with an array and a set constrained to a maximum of 1: both rejected 1,000 numeric items but still visited all 1,000 children. The upstream [Zod 4 change](https://github.com/colinhacks/zod/pull/6652) short-circuits checks when an existing upper-size bound is exceeded. Expo CLI's `PluginSchema` arrays and `DevToolsPluginOutputSchema` currently have no maximum; they are parsed in `DevToolsPlugin`, `DevToolsPluginCliExtensionResults`, and `MCPDevToolsPluginCLIExtensions`. Consequently, backporting only that upstream bounded-collection fix would not protect those unbounded paths. Input size caps or a broader parser change would need explicitly chosen limits, async and ESM/CJS coverage, and compatibility checks. No backport has been installed and the advisory remains open. Local-only Metro reduces exposure but does not eliminate the risk.
