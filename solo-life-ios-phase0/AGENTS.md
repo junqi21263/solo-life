@@ -39,3 +39,11 @@ Docs: https://docs.expo.dev/eas/index.md
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+
+## Solo Life working agreement
+
+- Apply the installed `ponytail:ponytail` skill at full level to every coding task. Inspect existing code and affected callers first; favor deletion, reuse, platform features, and the smallest complete change. Do not sacrifice functionality, UI, animation, accessibility, security, validation, or error handling. Verify behavior with checks appropriate to the change.
+- Keep the long-lived branches `ios-dev` and `ios-prod`. Work and commit on `ios-dev`; promote to `ios-prod` only for an explicitly authorized, verified release. Never interpret a branch merge or build as deployment, submission, or acceptance.
+- Before staging or cleanup, inspect Git status and worktrees; stage explicit project paths only. Preserve unrelated work, including the untracked parent project. Remove temporary worktrees only after confirming their work is safely integrated or otherwise preserved and no longer needed. Do not create nested repositories.
+- Treat `expo.version` as the user-facing app version and iOS build number as a separate, monotonically increasing distribution build identifier. Record version, build, target, and verification for each distribution; do not invent a production release or mutate versions for routine UI edits. Establish distinct dev/prod bundle IDs, signing, and backend targets before distributed builds; do not reuse production credentials or create remote resources without authorization.
+- Keep local development on localhost; do not expose Metro to the LAN or use tunnels without explicit authorization. Maintain the open dependency security review and recheck advisories and release artifacts before distribution.
